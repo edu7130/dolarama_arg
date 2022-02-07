@@ -9,18 +9,19 @@ class DollarProvider extends ChangeNotifier {
   }
 
   List<Dollar> _listDollar = [];
-
   bool _loading = false;
 
   get listDollar => _listDollar;
-
   get loading => _loading;
 
+  set _setLoading(bool loading){
+    _loading = loading;
+    notifyListeners();
+  }
+
   getListDollars() async {
-    _loading = true;
-    notifyListeners();
+    _setLoading = true;
     _listDollar = await DollarApi.getDollars();
-    _loading = false;
-    notifyListeners();
+    _setLoading = false;
   }
 }
